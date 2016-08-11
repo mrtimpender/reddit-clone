@@ -33,8 +33,11 @@
       <h5>{{post.author}}</h5>
       <img src='{{post.img}}' alt='{{post.title}}' />
       <p>{{post.body}}</p>
-      <p>{{post.comments}}</p>
       <p>{{post.date}}</p>
+      <p>{{post.comments.length}} Comments </p>
+      <div class='comments' ng-repeat='comment in post.comments'>
+        <p><strong>{{comment.author}}:</strong> {{comment.commentBody}}</p>
+      </div>
 
     </div>
   </div>
