@@ -22,9 +22,18 @@ app.controller('RedditController', function($scope){
     }
   ];
   $scope.upVote = function(post){
-    return post.votes++
+    post.votes++
   };
   $scope.downVote = function (post){
-    return post.votes--
+    post.votes--
+  };
+  $scope.voteCheck = function (post) {
+    if (post.votes == 0) {
+      return 'zero'
+    } else if (post.votes > 0){
+      return 'green'
+    } else {
+      return 'red'
+    }
   }
 });
