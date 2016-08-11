@@ -15,7 +15,7 @@
       <ul class="right">
         <li>Submit Post</li>
         <li>Search Box Here</li>
-        <li>Sort by VOTES + OTHERs</li>
+        <li>INSERT DROPDOWN</li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
@@ -28,17 +28,30 @@
 
 
   <div class='container'>
-    <div ng-repeat="post in view.posts | orderBy: post.votes">
+    <div ng-repeat="post in view.posts | orderBy: '-votes'">
+<!--
+      <div class="input-field col s12">
+        <select>
+          <option value="" disabled selected>Choose your option</option>
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </select>
+      <label>Sort Select</label>
+    </div>
+    <br> -->
       <h3>{{post.title}} <i class='material-icons' ng-click='upVote(post)'>thumb_up</i> | <i class='material-icons' ng-click='downVote(post)'>thumb_down</i> | <span ng-class='{greenText: post.votes > 0, redText: post.votes < 0}'>{{post.votes}}</span></h3>
       <h5>{{post.author}}</h5>
       <img src='{{post.img}}' alt='{{post.title}}' />
       <p>{{post.body}}</p>
       <p>{{post.date | date:"MMM d, y 'at' h:mma"}}</p>
-      <p ng-click='showAddComment(post)'>Add Comment</p>
+
       <p ng-click='showComments(post)'>{{post.comments.length}} Comments </p>
       <div class='comments' ng-repeat='comment in post.comments' ng-show='post.commentsView'>
         <p><strong>{{comment.author}}:</strong> {{comment.commentBody}}</p>
       </div>
+
+      <p ng-click='showAddComment(post)'>Add Comment</p>
       <div class="addComments" ng-show="post.addCommentView">
         <strong>Author: </strong><input type='text' /> <strong>Comment: <input type='text' />
       </div>

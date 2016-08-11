@@ -6,7 +6,7 @@ app.controller('RedditController', function($scope){
       title: 'Christian Bale Ale',
       author: 'Johnny Sassafras',
       body: 'Stumptown celiac sustainable cornhole small batch. Normcore church-key portland franzen kitsch, kinfolk cray PBR&B kombucha poutine. Single-origin coffee church-key pug next level. Chartreuse mixtape cornhole, gluten-free knausgaard asymmetrical migas. Brooklyn gochujang celiac kombucha, sartorial sriracha venmo truffaut meggings godard readymade keffiyeh.',
-      votes: 5,
+      votes: 3,
       img: 'https://untappd.akamaized.net/photo/2015_11_01/b4beef29cdc006b3313b9806f95cb5c0_320x320.jpg',
       comments: [
         {
@@ -50,13 +50,13 @@ app.controller('RedditController', function($scope){
     };
   };
   $scope.showComments = function(post){
+    post.addCommentView = false;
     if (post.comments.length !== 0){
       post.commentsView = !post.commentsView;
-      post.addCommentView = false;
     }
   };
   $scope.showAddComment = function(post){
-    post.addCommentView = !post.addCommentView;
     post.commentsView = false;
+    post.addCommentView = !post.addCommentView;
   }
 });
