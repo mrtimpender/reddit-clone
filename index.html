@@ -34,10 +34,13 @@
       <img src='{{post.img}}' alt='{{post.title}}' />
       <p>{{post.body}}</p>
       <p>{{post.date | date:"MMM d, y 'at' h:mma"}}</p>
-      <p>Add Comment</p>
+      <p ng-click='showAddComment(post)'>Add Comment</p>
       <p ng-click='showComments(post)'>{{post.comments.length}} Comments </p>
       <div class='comments' ng-repeat='comment in post.comments' ng-show='post.commentsView'>
         <p><strong>{{comment.author}}:</strong> {{comment.commentBody}}</p>
+      </div>
+      <div class="addComments" ng-show="post.addCommentView">
+        <strong>Author: </strong><input type='text' /> <strong>Comment: <input type='text' />
       </div>
 
     </div>

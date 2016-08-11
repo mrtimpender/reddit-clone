@@ -19,6 +19,7 @@ app.controller('RedditController', function($scope){
         }
       ],
       commentsView: false,
+      addCommentView: false,
       date: new Date()
     },
     {
@@ -29,6 +30,7 @@ app.controller('RedditController', function($scope){
       img: 'http://savourwinnipeg.com/wp-content/uploads/2012/07/Phils-Pils.jpg',
       comments: [],
       commentsView: true,
+      addCommentView: false,
       date: new Date()
     }
   ];
@@ -46,10 +48,15 @@ app.controller('RedditController', function($scope){
     } else {
       return 'red'
     };
-  }
-    $scope.showComments = function(post){
-      if (post.comments.length !== 0){
-        post.commentsView = !post.commentsView;
-      }
+  };
+  $scope.showComments = function(post){
+    if (post.comments.length !== 0){
+      post.commentsView = !post.commentsView;
+      post.addCommentView = false;
     }
+  };
+  $scope.showAddComment = function(post){
+    post.addCommentView = !post.addCommentView;
+    post.commentsView = false;
+  }
 });
