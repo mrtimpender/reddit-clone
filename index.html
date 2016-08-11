@@ -11,13 +11,15 @@
 
 <body ng-controller='RedditController'>
   <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Logo</a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="#">Navbar Link</a></li>
+    <div class="nav-wrapper container"><div id="logo-container" href="#" class="brand-logo">Reddit Clone</div>
+      <ul class="right hide-on-small-and-down">
+        <li>Submit Post</li>
+        <li>Sort by BLANK</li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
         <li><a href="#">Navbar Link</a></li>
+        <li><a href="#">Submit Post</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
@@ -25,10 +27,10 @@
 
 
   <div class='container'>
-    <div ng-repeat="post in view.posts">
-      <h3>{{post.title}} | {{post.votes}}</h3>
+    <div ng-repeat="post in view.posts | orderBy: post.votes">
+      <h3>{{post.title}} <i class='material-icons' ng-click='upVote(post)'>thumb_up</i> | <i class='material-icons' ng-click='downVote(post)'>thumb_down</i> | {{post.votes}} </h3>
       <h5>{{post.author}}</h5>
-      <img src='{{post.img}}' alt='{{post.title}}' />
+      <!-- <img src='{{post.img}}' alt='{{post.title}}' /> -->
       <p>{{post.body}}</p>
       <p>{{post.comments}}</p>
       <p>{{post.date}}</p>
