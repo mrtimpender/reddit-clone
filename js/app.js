@@ -18,6 +18,7 @@ app.controller('RedditController', function($scope){
           commentBody: "I could do a thousand now."
         }
       ],
+      commentsView: false,
       date: new Date()
     },
     {
@@ -26,7 +27,8 @@ app.controller('RedditController', function($scope){
       body: 'Affogato try-hard gluten-free, crucifix etsy venmo helvetica selvage street art dreamcatcher fanny pack banjo kale chips. Pork belly tumblr photo booth meggings, jean shorts blog kale chips hella VHS selvage lomo skateboard +1 YOLO street art.',
       votes: -1,
       img: 'http://savourwinnipeg.com/wp-content/uploads/2012/07/Phils-Pils.jpg',
-      comments: 'comments',
+      comments: [],
+      commentsView: true,
       date: new Date()
     }
   ];
@@ -43,6 +45,11 @@ app.controller('RedditController', function($scope){
       return 'green'
     } else {
       return 'red'
-    }
+    };
   }
+    $scope.showComments = function(post){
+      if (post.comments.length !== 0){
+        post.commentsView = !post.commentsView;
+      }
+    }
 });
