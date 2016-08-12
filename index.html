@@ -55,12 +55,12 @@
       <div class="addComments" ng-show="post.addCommentView">
         <form name='commentForm' novalidate>
           <fieldset>
-            <div class="input-field col s5 commentInput">
+            <div class="input-field commentInput">
               <label>Author: </label>
               <input type="text"
               ng-maxlength=25
               ng-minlength=2
-              ng-model= 'comment.commentAuthor'
+              ng-model= 'commentAuthor'
               name="commentAuthor"
               id="commentAuthor" required />
             </div>
@@ -78,13 +78,13 @@
             </div>
 
 
-            <div class="input-field col s5 commentInput">
+            <div class="input-field commentInput">
               <label>Comment: </label>
               <input type="text"
               name="commentBody"
               ng-minlength=2
               ng-maxlength=140
-              ng-model= 'comment.commentBody'
+              ng-model= 'commentBody'
               id="commentBody" required />
             </div>
             <div class="error-container"
@@ -100,15 +100,7 @@
              </small>
            </div>
 
-
-             <!-- || commentForm.commentAuthor.$dirty && commentForm.commentBody.$invalid">
-             <small class='error' ng-show='commentForm.commentAuthor.$required'>
-               An author name is required.
-             </small>
-             <small class='error' ng-show='commentForm.commentBody.$required'>
-               Please include
-             </small> -->
-             <input class='waves-effect waves-light btn commentBtn' type="submit" value="Submit Comment" />
+          <input class='waves-effect waves-light btn commentBtn' type="submit" value="Submit Comment" ng-click='submitComment(post, commentAuthor, commentBody)'/>
         </fieldset>
         </form>
       </div>
