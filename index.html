@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8">
     <title>Reddit Clone</title>
-    <link rel="stylesheet" href="css/style.css" media="screen" charset="utf-8">
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <link rel="stylesheet" href="css/style.css" media="screen" charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 
@@ -28,18 +28,17 @@
 
 
   <div class='container'>
+
+  <form name='submitPost' action="#">
+    <label for="firstname">First Name: </label>
+    <input type="text" id="firstname" required>
+    <label for="lastname">Last Name: </label>
+    <input type="text" id="lastname" required>
+    <input type="submit" value="Click me!">
+  </form>
+
+
     <div ng-repeat="post in view.posts | orderBy: '-votes'">
-<!--
-      <div class="input-field col s12">
-        <select>
-          <option value="" disabled selected>Choose your option</option>
-          <option value="1">Option 1</option>
-          <option value="2">Option 2</option>
-          <option value="3">Option 3</option>
-        </select>
-      <label>Sort Select</label>
-    </div>
-    <br> -->
       <h3>{{post.title}} <i class='material-icons' ng-click='upVote(post)'>thumb_up</i> | <i class='material-icons' ng-click='downVote(post)'>thumb_down</i> | <span ng-class='{greenText: post.votes > 0, redText: post.votes < 0}'>{{post.votes}}</span></h3>
       <h5>{{post.author}}</h5>
       <img src='{{post.img}}' alt='{{post.title}}' />
@@ -48,12 +47,70 @@
 
       <p ng-click='showComments(post)'>{{post.comments.length}} Comments </p>
       <div class='comments' ng-repeat='comment in post.comments' ng-show='post.commentsView'>
-        <p><strong>{{comment.author}}:</strong> {{comment.commentBody}}</p>
+        <p><strong>{{comment.commentAuthor}}:</strong> {{comment.commentBody}}</p>
       </div>
 
       <p ng-click='showAddComment(post)'>Add Comment</p>
+
       <div class="addComments" ng-show="post.addCommentView">
-        <strong>Author: </strong><input type='text' /> <strong>Comment: <input type='text' />
+        <form name='commentForm' novalidate>
+          <fieldset>
+            <div class="input-field col s5 commentInput">
+              <label>Author: </label>
+              <input type="text"
+              ng-maxlength=25
+              ng-minlength=2
+              ng-model= 'comment.commentAuthor'
+              name="commentAuthor"
+              id="commentAuthor" required />
+            </div>
+            <div class="error-container"
+             ng-show='commentForm.commentAuthor.$dirty && commentForm.commentAuthor.$invalid'>
+               <small class='error' ng-show='commentForm.commentAuthor.$error.minlength'>
+                 Please enter a valid author name.
+              </small>
+              <small class='error' ng-show='commentForm.commentAuthor.$error.maxlength'>
+                Your author name cannot be longer than 25 characters.
+             </small>
+              <small class='error' ng-show='commentForm.commentAuthor.$error.required'>
+                An author name is required.
+              </small>
+            </div>
+
+
+            <div class="input-field col s5 commentInput">
+              <label>Comment: </label>
+              <input type="text"
+              name="commentBody"
+              ng-minlength=2
+              ng-maxlength=140
+              ng-model= 'comment.commentBody'
+              id="commentBody" required />
+            </div>
+            <div class="error-container"
+             ng-show='commentForm.commentBody.$dirty && commentForm.commentBody.$invalid'>
+             <small class='error' ng-show='commentForm.commentBody.$error.required'>
+               Please enter your comment.
+             </small>
+             <small class='error' ng-show='commentForm.commentBody.$error.minlength'>
+               Your comment should be atleast two characters.
+             </small>
+             <small class='error' ng-show='commentForm.commentBody.$error.maxlength'>
+               Comments are Twitter style.  Please limit your comment to 140 characters.
+             </small>
+           </div>
+
+
+             <!-- || commentForm.commentAuthor.$dirty && commentForm.commentBody.$invalid">
+             <small class='error' ng-show='commentForm.commentAuthor.$required'>
+               An author name is required.
+             </small>
+             <small class='error' ng-show='commentForm.commentBody.$required'>
+               Please include
+             </small> -->
+             <input class='waves-effect waves-light btn commentBtn' type="submit" value="Submit Comment" />
+        </fieldset>
+        </form>
       </div>
 
     </div>

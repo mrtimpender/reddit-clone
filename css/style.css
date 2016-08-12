@@ -15,3 +15,22 @@ footer{
 .redText {
   color: red;
 }
+
+/*input.ng-invalid {
+  background-color: pink;
+}
+input.ng-valid {
+}*/
+
+.error {
+  font-size: 0.75em;
+  color:red;
+}
+
+input[type=text] {
+  margin-bottom: 5px;
+}
+
+.commentBtn {
+  margin-top: 20px;
+}

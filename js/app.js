@@ -1,25 +1,26 @@
 var app = angular.module('reddit-clone', []);
 app.controller('RedditController', function($scope){
   $scope.view = {};
+  $scope.view.sorts = ['votes', 'date', 'title'];
   $scope.view.posts = [
     {
-      title: 'Christian Bale Ale',
+      title: 'Christian Bale Pale Ale',
       author: 'Johnny Sassafras',
       body: 'Stumptown celiac sustainable cornhole small batch. Normcore church-key portland franzen kitsch, kinfolk cray PBR&B kombucha poutine. Single-origin coffee church-key pug next level. Chartreuse mixtape cornhole, gluten-free knausgaard asymmetrical migas. Brooklyn gochujang celiac kombucha, sartorial sriracha venmo truffaut meggings godard readymade keffiyeh.',
       votes: 3,
       img: 'https://untappd.akamaized.net/photo/2015_11_01/b4beef29cdc006b3313b9806f95cb5c0_320x320.jpg',
       comments: [
         {
-          author: 'Christian Bale',
+          commentAuthor: 'Christian Bale',
           commentBody: "Hmm, I see they've omitted the pork loin with lime Jell-O."
         },
         {
-          author: 'Patrick Bateman',
+          commentAuthor: 'Patrick Bateman',
           commentBody: "I could do a thousand now."
         }
       ],
       commentsView: false,
-      addCommentView: false,
+      addCommentView: true,
       date: new Date()
     },
     {
