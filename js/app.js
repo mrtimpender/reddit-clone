@@ -4,7 +4,6 @@ app.controller('RedditController', function($scope){
   $scope.view.sorts = ['votes', 'date', 'title'];
   $scope.view.showPostForm = false;
   $scope.view.sortBy = 'title';
-  $scope.view.dateNow = new Date();
   $scope.view.posts = [
     {
       title: 'Christian Bale Pale Ale',
@@ -46,7 +45,7 @@ app.controller('RedditController', function($scope){
     comments: [],
     commentsView: false,
     addCommentView: false,
-    date: moment('2016-06-04T08:45:01').calendar()
+    date: moment('2016-06-04T08:45:01').format('llll')
   },
   {
   title: 'Harry Porter',
@@ -57,7 +56,7 @@ app.controller('RedditController', function($scope){
   comments: [],
   commentsView: false,
   addCommentView: false,
-  date: new Date()
+  date: moment(new Date()).format('llll')
   }
   ];
   $scope.upVote = function(post){
@@ -114,7 +113,7 @@ app.controller('RedditController', function($scope){
 };
   $scope.sortIt = function(sortSelection) {
     console.log(sortSelection);
-    if (sortSelection !== 'title') {
+    if (sortSelection == 'votes' ) {
       $scope.view.sortBy = '-'+sortSelection;
     } else {
       $scope.view.sortBy = sortSelection
