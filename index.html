@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html ng-app='reddit-clone'>
+<html ng-app='reddit-clone' ng-cloak>
 <head>
     <meta charset="utf-8">
     <title>Reddit Clone</title>
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.4.0/animate.min.css">
     <link rel="stylesheet" href="css/style.css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="css/animations.css" media="screen" charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 
@@ -15,7 +17,7 @@
       <ul class="right">
         <li>
           <input id="search" type='search' ng-model='searchText' placeholder="Search"/></li>
-        <li ng-click='showAddPost()'><a href='#'>Submit Post</a></li>
+        <li class='submitPostNav' ng-click='showAddPost()'><a href='#'>Submit Post</a></li>
         <li>
         <li><a class="dropdown-button" href="#!" data-activates="sortBy">Sort By:<i class="material-icons right">arrow_drop_down</i></a></li>
       </ul>
@@ -25,18 +27,18 @@
         <li ng-repeat='sort in view.sorts' ng-click='sortIt(sort)'><a href="#!">{{sort}}</a></li>
       </ul>
 
-      <ul id="nav-mobile" class="side-nav">
+      <!-- <ul id="nav-mobile" class="side-nav">
         <li><a href="#">Navbar Link</a></li>
         <li><a href="#">Submit Post</a></li>
       </ul>
-      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a> -->
     </div>
   </nav>
 
   <div class='container'>
 
     <!-- Start Submit Form, Title First Input -->
-    <div class='showComments' ng-show='showPostForm'>
+    <div class='postForm' ng-show='showPostForm'>
       <form name='postForm' novalidate>
         <fieldset>
           <div class="input-field postInput">
@@ -202,9 +204,9 @@
 
 
   <footer>
-    <div class="footer-copyright cyan">
+    <div class="footer-copyright light-blue lighten-1">
       <div class="container">
-      Made by <span class="orange-text text-lighten-2">Tim Pender</span>
+      Made by <span class="orange-text text-lighten-3">Tim Pender</span> &#169; 2016
       </div>
     </div>
   </footer>
@@ -213,7 +215,9 @@
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="js/materialize.min.js"></script>
   <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js'></script>
+  <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.js'></script>
   <script type="text/javascript" src='js/app.js'></script>
+  <script type='text/javascript' src='js/moment.min.js'></script>
 
 
 </html>

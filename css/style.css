@@ -6,6 +6,7 @@ footer{
   bottom:0;
   width: 100%;
   margin-top: 5vh;
+  color: #FFF;
 }
 
 .greenText {
@@ -32,20 +33,29 @@ input[type=text] {
 }
 
 .commentBtn {
-  margin-top: 20px;
+  margin-top: 1vh;
 }
 
-nav .input-field {
-  margin: 1em 0 0 0;
-  display: inline;
+.postBtn {
+  margin-top: 1vh;
 }
 
+.submitPostNav{
+  margin-left: 1vw;
+}
+
+input[type=search] {
+  padding-left: 1vw;
+}
 
 input[type=search]:focus {
   background-color: rgba(255, 255, 255, 0.75);
   border: 0;
   box-shadow: none;
   color: rgba(0, 0, 0, 0.5);
-  padding-left: 0 10px;
   border-radius: 5px;
+}
+
+.postForm {
+  margin-top: 3vh;
 }

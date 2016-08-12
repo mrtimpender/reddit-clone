@@ -1,9 +1,10 @@
-var app = angular.module('reddit-clone', []);
+var app = angular.module('reddit-clone', ['ngAnimate']);
 app.controller('RedditController', function($scope){
   $scope.view = {};
   $scope.view.sorts = ['votes', 'date', 'title'];
   $scope.view.showPostForm = false;
   $scope.view.sortBy = 'title';
+  $scope.view.dateNow = new Date();
   $scope.view.posts = [
     {
       title: 'Christian Bale Pale Ale',
@@ -23,29 +24,40 @@ app.controller('RedditController', function($scope){
       ],
       commentsView: false,
       addCommentView: false,
-      date: new Date()
+      date: moment('2016-08-10T23:35:01').format('llll')
     },
     {
       title: "Doctor Phil's Pils",
       author: 'Oprah',
       body: 'Affogato try-hard gluten-free, crucifix etsy venmo helvetica selvage street art dreamcatcher fanny pack banjo kale chips. Pork belly tumblr photo booth meggings, jean shorts blog kale chips hella VHS selvage lomo skateboard +1 YOLO street art.',
-      votes: -1,
+      votes: -4,
       img: 'http://savourwinnipeg.com/wp-content/uploads/2012/07/Phils-Pils.jpg',
       comments: [],
       commentsView: false,
       addCommentView: false,
-      date: new Date()
+      date: moment('2016-03-28T10:20:01').format('llll')
     },
     {
     title: 'Doppelganger Doppelbock',
     author: 'Your Evil Twin',
     body: 'Scenester blue bottle tacos pinterest leggings lumbersexual, vegan photo booth irony offal. Retro affogato kickstarter jean shorts crucifix. Tilde sriracha lo-fi occupy organic, tattooed health goth readymade drinking vinegar put a bird on it 3 wolf moon tousled poutine cred disrupt. Fixie health goth tacos kickstarter, blue bottle hoodie shoreditch tattooed chia cliche. ',
-    votes: 5,
+    votes: 0,
     img: 'http://www.homebrewing.org/assets/images/doppelbock.jpg',
     comments: [],
     commentsView: false,
     addCommentView: false,
-    date: new Date()
+    date: moment('2016-06-04T08:45:01').calendar()
+  },
+  {
+  title: 'Harry Porter',
+  author: 'Albus Dumblebored',
+  body: 'Dark, twisted, and served in a Goblet of Fire!!',
+  votes: 12,
+  img: 'https://s-media-cache-ak0.pinimg.com/564x/05/3b/4a/053b4a92b6c441b551f1d268b255293c.jpg',
+  comments: [],
+  commentsView: false,
+  addCommentView: false,
+  date: new Date()
   }
   ];
   $scope.upVote = function(post){
@@ -85,6 +97,7 @@ app.controller('RedditController', function($scope){
     post.addCommentView = false;
   };
   $scope.submitPost = function(posts,title,author,body,img){
+    var new_date = new Date();
     var new_stuff = {
     title: title,
     author: author,
@@ -94,7 +107,7 @@ app.controller('RedditController', function($scope){
     comments: [],
     commentsView: false,
     addCommentView: false,
-    date: new Date()
+    date: moment(new_date).format('llll')
   }
   posts.push(new_stuff);
   $scope.showPostForm = !$scope.showPostForm;
