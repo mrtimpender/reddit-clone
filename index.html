@@ -15,7 +15,14 @@
       <ul class="right">
         <li ng-click='showAddPost()'><a href='#'>Submit Post</a></li>
         <li><a href='#'>Search Box Here</a></li>
-        <li><a href='#'>INSERT DROPDOWN</a></li>
+        <li>
+        <li><a class="dropdown-button" href="#!" data-activates="sortBy">Sort By:<i class="material-icons right">arrow_drop_down</i></a></li>
+      </ul>
+
+      <ul id="sortBy" class="dropdown-content">
+        <li><a href:'#' disabled>Sort By:</a></li>
+        <li class="divider"></li>
+        <li ng-repeat='sort in view.sorts' ng-click='sortIt(sort)'><a href="#!">{{sort}}</a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
@@ -26,8 +33,8 @@
     </div>
   </nav>
 
-
   <div class='container'>
+
     <!-- Start Submit Form, Title First Input -->
     <div class='showComments' ng-show='showPostForm'>
       <form name='postForm' novalidate>
@@ -115,12 +122,12 @@
           </div>
           <!-- Submit Form -->
             <input class='waves-effect waves-light btn postBtn' type="button" value="Submit Post" ng-click='submitPost(view.posts, postFormTitle, postFormAuthor, postFormBody, postFormImg)' />
-          </div>
         </fieldset>
       </form>
     </div>
 
-    <div ng-repeat="post in view.posts | orderBy: '-votes'">
+
+    <div ng-repeat="post in view.posts | orderBy: view.sortBy">
       <h3>{{post.title}} <i class='material-icons' ng-click='upVote(post)'>thumb_up</i> | <i class='material-icons' ng-click='downVote(post)'>thumb_down</i> | <span ng-class='{greenText: post.votes > 0, redText: post.votes < 0}'>{{post.votes}}</span></h3>
       <h5>{{post.author}}</h5>
       <img src='{{post.img}}' alt='{{post.title}}' />

@@ -3,6 +3,7 @@ app.controller('RedditController', function($scope){
   $scope.view = {};
   $scope.view.sorts = ['votes', 'date', 'title'];
   $scope.view.showPostForm = false;
+  $scope.view.sortBy = 'title';
   $scope.view.posts = [
     {
       title: 'Christian Bale Pale Ale',
@@ -39,7 +40,7 @@ app.controller('RedditController', function($scope){
     title: 'Doppelganger Doppelbock',
     author: 'Your Evil Twin',
     body: 'Scenester blue bottle tacos pinterest leggings lumbersexual, vegan photo booth irony offal. Retro affogato kickstarter jean shorts crucifix. Tilde sriracha lo-fi occupy organic, tattooed health goth readymade drinking vinegar put a bird on it 3 wolf moon tousled poutine cred disrupt. Fixie health goth tacos kickstarter, blue bottle hoodie shoreditch tattooed chia cliche. ',
-    votes: 0,
+    votes: 5,
     img: 'http://www.homebrewing.org/assets/images/doppelbock.jpg',
     comments: [],
     commentsView: false,
@@ -88,15 +89,23 @@ app.controller('RedditController', function($scope){
     title: title,
     author: author,
     body: body,
-    votes: 11,
+    votes: 0,
     img: img,
     comments: [],
     commentsView: false,
     addCommentView: false,
     date: new Date()
   }
-  console.log(new_stuff);
   posts.push(new_stuff);
+  $scope.showPostForm = !$scope.showPostForm;
 };
+  $scope.sortIt = function(sortSelection) {
+    console.log(sortSelection);
+    if (sortSelection !== 'title') {
+      $scope.view.sortBy = '-'+sortSelection;
+    } else {
+      $scope.view.sortBy = sortSelection
+    }
+  }
 
 });
