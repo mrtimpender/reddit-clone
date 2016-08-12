@@ -2,6 +2,7 @@ var app = angular.module('reddit-clone', []);
 app.controller('RedditController', function($scope){
   $scope.view = {};
   $scope.view.sorts = ['votes', 'date', 'title'];
+  $scope.view.showPostForm = false;
   $scope.view.posts = [
     {
       title: 'Christian Bale Pale Ale',
@@ -33,7 +34,18 @@ app.controller('RedditController', function($scope){
       commentsView: false,
       addCommentView: false,
       date: new Date()
-    }
+    },
+    {
+    title: 'Doppelganger Doppelbock',
+    author: 'Your Evil Twin',
+    body: 'Scenester blue bottle tacos pinterest leggings lumbersexual, vegan photo booth irony offal. Retro affogato kickstarter jean shorts crucifix. Tilde sriracha lo-fi occupy organic, tattooed health goth readymade drinking vinegar put a bird on it 3 wolf moon tousled poutine cred disrupt. Fixie health goth tacos kickstarter, blue bottle hoodie shoreditch tattooed chia cliche. ',
+    votes: 0,
+    img: 'http://www.homebrewing.org/assets/images/doppelbock.jpg',
+    comments: [],
+    commentsView: false,
+    addCommentView: false,
+    date: new Date()
+  }
   ];
   $scope.upVote = function(post){
     post.votes++
@@ -57,11 +69,12 @@ app.controller('RedditController', function($scope){
     }
   };
   $scope.showAddComment = function(post){
-    // commentAuthor = '';
-    // commentBody = '';
     post.commentsView = false;
     post.addCommentView = !post.addCommentView;
   };
+  $scope.showAddPost = function(){
+    $scope.showPostForm = !$scope.showPostForm;
+  }
   $scope.submitComment = function(post,commentAuthor,commentBody){
     var new_stuff = {
       commentAuthor: commentAuthor,
@@ -69,5 +82,21 @@ app.controller('RedditController', function($scope){
     }
     post.comments.push(new_stuff);
     post.addCommentView = false;
+  };
+  $scope.submitPost = function(posts,title,author,body,img){
+    var new_stuff = {
+    title: title,
+    author: author,
+    body: body,
+    votes: 11,
+    img: img,
+    comments: [],
+    commentsView: false,
+    addCommentView: false,
+    date: new Date()
   }
+  console.log(new_stuff);
+  posts.push(new_stuff);
+};
+
 });

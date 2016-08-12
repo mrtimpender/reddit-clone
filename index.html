@@ -13,9 +13,9 @@
   <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container"><div id="logo-container" href="#" class="brand-logo">Reddit Clone</div>
       <ul class="right">
-        <li>Submit Post</li>
-        <li>Search Box Here</li>
-        <li>INSERT DROPDOWN</li>
+        <li ng-click='showAddPost()'><a href='#'>Submit Post</a></li>
+        <li><a href='#'>Search Box Here</a></li>
+        <li><a href='#'>INSERT DROPDOWN</a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
@@ -28,15 +28,97 @@
 
 
   <div class='container'>
-
-  <form name='submitPost' action="#">
-    <label for="firstname">First Name: </label>
-    <input type="text" id="firstname" required>
-    <label for="lastname">Last Name: </label>
-    <input type="text" id="lastname" required>
-    <input type="submit" value="Click me!">
-  </form>
-
+    <!-- Start Submit Form, Title First Input -->
+    <div class='showComments' ng-show='showPostForm'>
+      <form name='postForm' novalidate>
+        <fieldset>
+          <div class="input-field postInput">
+            <label>Title: </label>
+            <input type="text"
+            ng-maxlength=100
+            ng-minlength=2
+            ng-model= 'postFormTitle'
+            name="postFormTitle"
+            id="postFormTitle" required />
+          </div>
+          <div class="error-container"
+           ng-show='postForm.postFormTitle.$dirty && postForm.postFormTitle.$invalid'>
+             <small class='error' ng-show='postForm.postFormTitle.$error.minlength'>
+               Please enter a valid title name.
+            </small>
+            <small class='error' ng-show='postForm.postFormTitle.$error.maxlength'>
+              Your title name cannot be longer than 100 characters.
+           </small>
+            <small class='error' ng-show='postForm.postFormTitle.$error.required'>
+              An title name is required.
+            </small>
+          </div>
+          <!-- Author Input -->
+          <div class="input-field postInput">
+            <label>Author: </label>
+            <input type="text"
+            ng-maxlength=25
+            ng-minlength=2
+            ng-model= 'postFormAuthor'
+            name="postFormAuthor"
+            id="postFormAuthor" required />
+          </div>
+          <div class="error-container"
+           ng-show='postForm.postFormAuthor.$dirty && postForm.postFormAuthor.$invalid'>
+             <small class='error' ng-show='postForm.postFormAuthor.$error.minlength'>
+               Please enter a valid author name.
+            </small>
+            <small class='error' ng-show='postForm.postFormAuthor.$error.maxlength'>
+              Your author name cannot be longer than 25 characters.
+           </small>
+            <small class='error' ng-show='postForm.postFormAuthor.$error.required'>
+              An author name is required.
+            </small>
+          </div>
+          <!-- Body Input -->
+          <div class="input-field postInput">
+            <label>Post Text: </label>
+            <input type="text"
+            ng-maxlength=500
+            ng-minlength=2
+            ng-model= 'postFormBody'
+            name="postFormBody"
+            id="postFormBody" required />
+          </div>
+          <div class="error-container"
+           ng-show='postForm.postFormBody.$dirty && postForm.postFormBody.$invalid'>
+             <small class='error' ng-show='postForm.postFormBody.$error.minlength'>
+               Please enter more than 1 character for your post text.
+            </small>
+            <small class='error' ng-show='postForm.postFormBody.$error.maxlength'>
+              Your post text cannot be longer than 500 characters.
+           </small>
+            <small class='error' ng-show='postForm.postFormBody.$error.required'>
+              Post text is required.
+            </small>
+          </div>
+          <!-- Image Input -->
+          <div class="input-field postInput">
+            <label>Image URL: </label>
+            <input type="text"
+            ng-maxlength=500
+            ng-minlength=3
+            ng-model= 'postFormImg'
+            name="postFormImg"
+            id="postFormImg" required />
+          </div>
+          <div class="error-container"
+           ng-show='postForm.postFormImg.$dirty && postForm.postFormImg.$invalid'>
+             <small class='error' ng-show='postForm.postFormImg.$error.minlength'>
+               Please enter a valid URL.
+            </small>
+          </div>
+          <!-- Submit Form -->
+            <input class='waves-effect waves-light btn postBtn' type="button" value="Submit Post" ng-click='submitPost(view.posts, postFormTitle, postFormAuthor, postFormBody, postFormImg)' />
+          </div>
+        </fieldset>
+      </form>
+    </div>
 
     <div ng-repeat="post in view.posts | orderBy: '-votes'">
       <h3>{{post.title}} <i class='material-icons' ng-click='upVote(post)'>thumb_up</i> | <i class='material-icons' ng-click='downVote(post)'>thumb_down</i> | <span ng-class='{greenText: post.votes > 0, redText: post.votes < 0}'>{{post.votes}}</span></h3>
@@ -47,7 +129,7 @@
 
       <p ng-click='showComments(post)'>{{post.comments.length}} Comments </p>
       <div class='comments' ng-repeat='comment in post.comments' ng-show='post.commentsView'>
-        <p><strong>{{comment.commentAuthor}}:</strong> {{comment.commentBody}}</p>
+        <p><strong>{{comment.commentBody}}:</strong> {{comment.commentBody}}</p>
       </div>
 
       <p ng-click='showAddComment(post)'>Add Comment</p>
@@ -100,7 +182,7 @@
              </small>
            </div>
 
-          <input class='waves-effect waves-light btn commentBtn' type="submit" value="Submit Comment" ng-click='submitComment(post, commentAuthor, commentBody)'/>
+          <input class='waves-effect waves-light btn commentBtn' type="submit" value="Submit Comment" ng-click='submitComment(post, commentBody, commentBody)'/>
         </fieldset>
         </form>
       </div>
