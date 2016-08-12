@@ -13,12 +13,12 @@
   <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container"><div id="logo-container" href="#" class="brand-logo">Reddit Clone</div>
       <ul class="right">
+        <li>
+          <input id="search" type='search' ng-model='searchText' placeholder="Search"/></li>
         <li ng-click='showAddPost()'><a href='#'>Submit Post</a></li>
-        <li><a href='#'>Search Box Here</a></li>
         <li>
         <li><a class="dropdown-button" href="#!" data-activates="sortBy">Sort By:<i class="material-icons right">arrow_drop_down</i></a></li>
       </ul>
-
       <ul id="sortBy" class="dropdown-content">
         <li><a href:'#' disabled>Sort By:</a></li>
         <li class="divider"></li>
@@ -127,7 +127,7 @@
     </div>
 
 
-    <div ng-repeat="post in view.posts | orderBy: view.sortBy">
+    <div ng-repeat="post in view.posts | orderBy: view.sortBy | filter: searchText">
       <h3>{{post.title}} <i class='material-icons' ng-click='upVote(post)'>thumb_up</i> | <i class='material-icons' ng-click='downVote(post)'>thumb_down</i> | <span ng-class='{greenText: post.votes > 0, redText: post.votes < 0}'>{{post.votes}}</span></h3>
       <h5>{{post.author}}</h5>
       <img src='{{post.img}}' alt='{{post.title}}' />
@@ -136,7 +136,7 @@
 
       <p ng-click='showComments(post)'>{{post.comments.length}} Comments </p>
       <div class='comments' ng-repeat='comment in post.comments' ng-show='post.commentsView'>
-        <p><strong>{{comment.commentBody}}:</strong> {{comment.commentBody}}</p>
+        <p><strong>{{comment.commentAuthor}}:</strong> {{comment.commentBody}}</p>
       </div>
 
       <p ng-click='showAddComment(post)'>Add Comment</p>
@@ -189,7 +189,7 @@
              </small>
            </div>
 
-          <input class='waves-effect waves-light btn commentBtn' type="submit" value="Submit Comment" ng-click='submitComment(post, commentBody, commentBody)'/>
+          <input class='waves-effect waves-light btn commentBtn' type="submit" value="Submit Comment" ng-click='submitComment(post, commentAuthor, commentBody)'/>
         </fieldset>
         </form>
       </div>
