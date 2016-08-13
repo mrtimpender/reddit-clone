@@ -132,24 +132,23 @@
     <div ng-repeat="post in view.posts | orderBy: view.sortBy | filter: searchText">
     <div class='card'>
       <div class='row'>
-        <img class='col s12 m6 l4 card-image' src='{{post.img}}' alt='{{post.title}}' />
-
-        <div class='col s12 m6 l8'>
-          <h3>{{post.title}} <i class='material-icons' ng-click='upVote(post)'>thumb_up</i> | <i class='material-icons' ng-click='downVote(post)'>thumb_down</i> | <span ng-class='{greenText: post.votes > 0, redText: post.votes < 0}'>{{post.votes}}</span></h3>
-          <h5>{{post.author}}</h5>
+        <div class='col s12 m4 l3'>
+          <img class='card-image' src='{{post.img}}' alt='{{post.title}}' />
+        </div>
+        <div class='col s12 m8 l9'>
+          <h5>{{post.title}} | <i class='material-icons' ng-click='upVote(post)'>thumb_up</i> <i class='material-icons' ng-click='downVote(post)'>thumb_down</i> <span ng-class='{greenText: post.votes > 0, redText: post.votes < 0}'>{{post.votes}}</span></h5>
+          <p>By: {{post.author}} </p>
           <p>{{post.body}}</p>
-          <p>{{post.date | date:"MMM d, y 'at' h:mma"}}</p>
 
-          <p ng-click='showComments(post)'>{{post.comments.length}} Comments </p>
-          <div class='comments' ng-repeat='comment in post.comments' ng-show='post.commentsView'>
-            <p><strong>{{comment.commentAuthor}}:</strong> {{comment.commentBody}}</p>
-          </div>
-          <p ng-click='showAddComment(post)'>Add Comment</p>
+          <p>{{post.date | date:"MMM d, y 'at' h:mma"}} | <span ng-click='showComments(post)'><strong>{{post.comments.length}}</strong> Comments</span>
+           |  <span ng-click='showAddComment(post)'><strong>Add Comment</strong></span>
         </div>
       </div>
 
       <!-- Comment Section -->
-
+      <span class='comments' ng-repeat='comment in post.comments' ng-show='post.commentsView'>
+        <p><strong>{{comment.commentAuthor}}:</strong> {{comment.commentBody}}</p>
+      </span>
       <div class="addComments" ng-show="post.addCommentView">
         <form name='commentForm' novalidate>
           <fieldset>

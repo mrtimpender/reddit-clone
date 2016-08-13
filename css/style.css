@@ -17,12 +17,6 @@ footer{
   color: red;
 }
 
-/*input.ng-invalid {
-  background-color: pink;
-}
-input.ng-valid {
-}*/
-
 .error {
   font-size: 0.75em;
   color:red;
@@ -61,5 +55,11 @@ input[type=search]:focus {
 }
 
 .card-image {
-  
+  height: 100%;
+  width:100%;
+  margin-top: 10%;
+}
+
+.card {
+  padding: 10px;
 }
