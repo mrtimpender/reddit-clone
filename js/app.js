@@ -21,8 +21,6 @@ app.controller('RedditController', function($scope){
           commentBody: "I could do a thousand now."
         }
       ],
-      commentsView: false,
-      addCommentView: false,
       date: moment('2016-08-10T23:35:01').format('llll')
     },
     {
@@ -32,8 +30,6 @@ app.controller('RedditController', function($scope){
       votes: -4,
       img: 'http://savourwinnipeg.com/wp-content/uploads/2012/07/Phils-Pils.jpg',
       comments: [],
-      commentsView: false,
-      addCommentView: false,
       date: moment('2016-03-28T10:20:01').format('llll')
     },
     {
@@ -43,20 +39,16 @@ app.controller('RedditController', function($scope){
     votes: 0,
     img: 'http://www.homebrewing.org/assets/images/doppelbock.jpg',
     comments: [],
-    commentsView: false,
-    addCommentView: false,
     date: moment('2016-06-04T08:45:01').format('llll')
   },
   {
-  title: 'Harry Porter',
-  author: 'Albus Dumblebored',
-  body: 'Dark, twisted, and served in a Goblet of Fire!!',
-  votes: 12,
-  img: 'https://s-media-cache-ak0.pinimg.com/564x/05/3b/4a/053b4a92b6c441b551f1d268b255293c.jpg',
-  comments: [],
-  commentsView: false,
-  addCommentView: false,
-  date: moment(new Date()).format('llll')
+    title: 'Harry Porter',
+    author: 'Albus Dumblebored',
+    body: 'Dark, twisted, and served in a Goblet of Fire!!',
+    votes: 12,
+    img: 'https://s-media-cache-ak0.pinimg.com/564x/05/3b/4a/053b4a92b6c441b551f1d268b255293c.jpg',
+    comments: [],
+    date: moment(new Date()).format('llll')
   }
   ];
   $scope.upVote = function(post){
@@ -64,15 +56,6 @@ app.controller('RedditController', function($scope){
   };
   $scope.downVote = function (post){
     post.votes--
-  };
-  $scope.voteCheck = function (post) {
-    if (post.votes == 0) {
-      return 'zero'
-    } else if (post.votes > 0){
-      return 'green'
-    } else {
-      return 'red'
-    };
   };
   $scope.showComments = function(post){
     post.addCommentView = false;
@@ -96,6 +79,7 @@ app.controller('RedditController', function($scope){
     post.addCommentView = false;
   };
   $scope.submitPost = function(posts,title,author,body,img){
+    // $scope.newPost.votes = 0
     var new_date = new Date();
     var new_stuff = {
     title: title,
@@ -104,8 +88,6 @@ app.controller('RedditController', function($scope){
     votes: 0,
     img: img,
     comments: [],
-    commentsView: false,
-    addCommentView: false,
     date: moment(new_date).format('llll')
   }
   posts.push(new_stuff);
