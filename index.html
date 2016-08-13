@@ -38,9 +38,9 @@
   <div class='container'>
 
     <!-- Start Submit Form, Title First Input -->
-    <div class='postForm' ng-show='showPostForm'>
+    <div class='card blue-grey lighten-5 postForm' ng-show='showPostForm'>
       <form name='postForm' novalidate>
-        <fieldset>
+        <fieldset class='grey lighten-5'>
           <div class="input-field postInput">
             <label>Title: </label>
             <input type="text"
@@ -130,7 +130,7 @@
 
     <!-- Post Content Block -->
     <div ng-repeat="post in view.posts | orderBy: view.sortBy | filter: searchText">
-    <div class='card'>
+    <div class='card blue-grey lighten-5'>
       <div class='row'>
         <div class='col s12 m4 l3'>
           <img class='card-image' src='{{post.img}}' alt='{{post.title}}' />
@@ -140,18 +140,21 @@
           <p>By: {{post.author}} </p>
           <p>{{post.body}}</p>
 
-          <p>{{post.date | date:"MMM d, y 'at' h:mma"}} | <span ng-click='showComments(post)'><strong>{{post.comments.length}}</strong> Comments</span>
+          <p>{{post.date | date:"MMM d, y 'at' h:mma"}} | <span ng-click='showComments(post)' ng-cloak><strong>{{post.comments.length}}</strong> Comments</span>
            |  <span ng-click='showAddComment(post)'><strong>Add Comment</strong></span>
         </div>
       </div>
 
       <!-- Comment Section -->
-      <span class='comments' ng-repeat='comment in post.comments' ng-show='post.commentsView'>
-        <p><strong>{{comment.commentAuthor}}:</strong> {{comment.commentBody}}</p>
+      <span class='comments' ng-repeat='comment in post.comments' ng-show='post.commentsView' ng-cloak>
+        <fieldset class='white'>
+          <p><strong>{{comment.commentAuthor}}:</strong></p>
+          <p>{{comment.commentBody}}</p>
+        </fieldset>
       </span>
       <div class="addComments" ng-show="post.addCommentView">
         <form name='commentForm' novalidate>
-          <fieldset>
+          <fieldset class='white'>
             <div class="input-field commentInput">
               <label>Author: </label>
               <input type="text"

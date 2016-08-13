@@ -24,6 +24,7 @@
   transition-delay: 0.2s;
   transition-duration:0;
 }*/
+
 .ng-enter {
   animation: rotateInDownLeft .5s;
 }
